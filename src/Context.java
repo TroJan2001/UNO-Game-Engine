@@ -1,18 +1,19 @@
+import java.util.Scanner;
+
 public class Context {
-    private Player currentPlayer;
-    private DiscardPile discardPile;
-    private Deck deck;
+    final private DiscardPile discardPile;
+    final private Deck deck;
+    final private Scanner scanner;
+    final private Game game;
 
     // Constructor and getters/setters
-    public Context(Player currentPlayer, DiscardPile discardPile, Deck deck) {
-        this.currentPlayer = currentPlayer;
+    public Context(DiscardPile discardPile, Deck deck,Scanner scanner, Game game) {
         this.discardPile = discardPile;
         this.deck = deck;
+        this.scanner = scanner;
+        this.game = game;
     }
 
-    public Player getCurrentPlayer() {
-        return currentPlayer;
-    }
 
 
     public DiscardPile getDiscardPile() {
@@ -23,4 +24,11 @@ public class Context {
         return deck;
     }
 
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public Game getGame() {
+        return game;
+    }
 }

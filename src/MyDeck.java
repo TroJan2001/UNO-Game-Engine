@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class MyDeck implements Deck {
-    ArrayList<Card> deck = new ArrayList<Card>();
+    ArrayList<Card> deck = new ArrayList<>();
 
     public MyDeck() {
         initializeDeck();
@@ -23,18 +23,16 @@ public class MyDeck implements Deck {
                 deck.add(new NumberedCard(color, String.valueOf(j)));
             }
             deck.add(new NumberedCard(color, String.valueOf(0)));
-            deck.add(new ActionCard(color, "Reverse"));
-            deck.add(new ActionCard(color, "Reverse"));
-            deck.add(new ActionCard(color, "Skip"));
-            deck.add(new ActionCard(color, "Skip"));
-            deck.add(new ActionCard(color, "Draw Two"));
-            deck.add(new ActionCard(color, "Draw Two"));
+            deck.add(new ReverseCard(color));
+            deck.add(new ReverseCard(color));
+            deck.add(new SkipCard(color));
+            deck.add(new SkipCard(color));
+            deck.add(new DrawTwoCard(color));
+            deck.add(new DrawTwoCard(color));
         }
-        String[] wilds = {"Wild", "Wild Draw Four"};
-        for (String wild : wilds) {
-            for (int j = 0; j < 4; j++) {
-                deck.add(new WildCard(wild));
-            }
+        for (int j = 0; j < 4; j++) {
+            deck.add(new WildCard());
+            deck.add(new WildCard4());
         }
     }
 

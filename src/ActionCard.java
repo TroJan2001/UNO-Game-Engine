@@ -1,4 +1,4 @@
-public class ActionCard implements ColoredCard {
+public abstract class ActionCard implements ColoredCard,Executable {
     private final String color;
     private final String action;
 

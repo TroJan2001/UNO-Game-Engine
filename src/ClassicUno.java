@@ -1,12 +1,9 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Scanner;
+import java.util.*;
 
 public class ClassicUno extends Game{
-    protected int currentPlayerIndex = 0;
-    protected boolean isReversed = false;
-    protected boolean skipNextTurn = false;
+
+    private Map<Player, Context> playerContexts;
+
 
     @Override
     protected void initializeGame() {
@@ -14,16 +11,23 @@ public class ClassicUno extends Game{
         discardPile = new DiscardPile();
         deck = new MyDeck();
         deck.shuffle();
+        playerContexts = new HashMap<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please Enter Player 1 name?");
-        players.add(new Player(scanner.nextLine()));
+        Player player1 = new Player(scanner.nextLine());
+        players.add(player1);
+        playerContexts.put(player1, new Context(discardPile,deck,scanner,this));
         System.out.println("Please Enter Player 2 name?");
-        players.add(new Player(scanner.nextLine()));
+        Player player2 = new Player(scanner.nextLine());
+        players.add(player2);
+        playerContexts.put(player2, new Context(discardPile,deck,scanner,this));
         while(true){
             System.out.println("Do you want to add a new player? (Y/N)");
             if(scanner.nextLine().equalsIgnoreCase("y") && players.size()<10){
                 System.out.println("Please Enter Player name?");
-                players.add(new Player(scanner.nextLine()));
+                Player newPlayer = new Player(scanner.nextLine());
+                players.add(newPlayer);
+                playerContexts.put(newPlayer, new Context(discardPile,deck,scanner,this));
             }
             else
                 break;
@@ -50,12 +54,13 @@ public class ClassicUno extends Game{
 
         if (skipNextTurn) {
             skipNextTurn = false;
-            // Move to the next player
-            getNextPlayer();
+            currentPlayerIndex = getNextPlayerIndex();
             return;
         }
+
+        Context context = playerContexts.get(player);
         // Show the player's hand
-        System.out.println(player.getName() + "'s turn. Your cards: ");
+        System.out.println(player.getName() + "'s turn. " + player.getName() + "'s cards: ");
         for (Card card : player.getHand()) {
             System.out.println(card);
         }
@@ -71,42 +76,8 @@ public class ClassicUno extends Game{
                 cardPlayed = true;
 
                 // Handle special cards
-                if (card instanceof ActionCard actionCard) {
-                    switch (actionCard.getValue()) {
-                        case "Reverse":
-                            isReversed = !isReversed;
-                            System.out.println("Reversing turn");
-                            break;
-                        case "Draw Two":
-                            Player nextPlayer = getNextPlayer();
-                            nextPlayer.drawCard(deck.drawCard());
-                            nextPlayer.drawCard(deck.drawCard());
-                            System.out.println(nextPlayer.getName() + " draws two cards and loses their turn");
-                            skipNextTurn = true;
-                            break;
-                        case "Skip":
-                            System.out.println("Next player's turn is skipped!");
-                            skipNextTurn = true;
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                else if (card instanceof WildCard wildCard) {
-                    Scanner scanner = new Scanner(System.in);
-                    System.out.println("Choose a color (Red, Blue, Green, Yellow): ");
-                    String chosenColor = scanner.nextLine();
-                    discardPile.addCard(new ActionCard(chosenColor, "None"));
-                    System.out.println("Changing color to " + chosenColor);
-
-                    if (wildCard.getValue().equals("Wild Draw Four")) {
-                        Player wildNextPlayer = getNextPlayer();
-                        for (int i = 0; i < 4; i++) {
-                            wildNextPlayer.drawCard(deck.drawCard());
-                        }
-                        System.out.println(wildNextPlayer.getName() + " draws four cards and loses their turn");
-                        skipNextTurn = true;
-                    }
+                if (card instanceof Executable executable) {
+                    executable.execute(context);
                 }
                 break;
             }
@@ -118,6 +89,7 @@ public class ClassicUno extends Game{
             player.drawCard(drawnCard);
             System.out.println(player.getName() + " draws a card");
         }
+        currentPlayerIndex = getNextPlayerIndex();
     }
 
     @Override
@@ -125,14 +97,33 @@ public class ClassicUno extends Game{
         return player.getHand().isEmpty();
     }
 
-    protected Player getNextPlayer() {
+    protected int getNextPlayerIndex() {
+        int index;
         if (isReversed) {
-            currentPlayerIndex = (currentPlayerIndex - 1 + players.size()) % players.size();
+            index = (currentPlayerIndex - 1 + players.size()) % players.size();
         } else {
-            currentPlayerIndex = (currentPlayerIndex + 1) % players.size();
+            index = (currentPlayerIndex + 1) % players.size();
         }
-        return players.get(currentPlayerIndex);
+        return index;
     }
+
+    @Override
+    protected Player getNextPlayer() {
+        return players.get(getNextPlayerIndex());
+    }
+
+    @Override
+    protected void reverseDirection() {
+        isReversed = !isReversed; // Toggle the direction
+        System.out.println("Direction reversed");
+    }
+
+    @Override
+    protected void skipNextTurn() {
+       skipNextTurn=true;
+       System.out.println("Skipping Next Player Turn");
+    }
+
 
 }
 
