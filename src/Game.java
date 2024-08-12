@@ -27,6 +27,11 @@ public abstract class Game {
         while (true) {
             for (Player player : players) {
                 playTurn(player);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
                 if (checkWinCondition(player)) {
                     System.out.println(player.getName() + " wins!");
                     return;

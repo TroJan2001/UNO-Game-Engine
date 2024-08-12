@@ -36,6 +36,6 @@ public class NumberedCard implements ColoredCard {
 
     @Override
     public String toString() {
-        return this.color + " " + this.number;
+        return "NumberedCard{" + "color='" + color + '\'' + ", number='" + number + '\'' + '}';
     }
 }

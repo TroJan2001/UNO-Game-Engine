@@ -40,4 +40,5 @@ public class ActionCard implements ColoredCard {
     public String toString() {
         return "ActionCard{" + "color='" + color + '\'' + ", action='" + action + '\'' + '}';
     }
+
 }

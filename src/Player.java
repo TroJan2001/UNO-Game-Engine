@@ -4,6 +4,7 @@ public class Player {
     private final String name;
     private final List<Card> hand;
 
+
     public Player(String name) {
         this.name = name;
         this.hand = new ArrayList<>();
@@ -24,4 +25,5 @@ public class Player {
     public void playCard(Card card) {
         hand.remove(card);
     }
+
 }

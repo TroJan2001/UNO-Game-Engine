@@ -30,10 +30,10 @@ public class MyDeck implements Deck {
             deck.add(new ActionCard(color, "Draw Two"));
             deck.add(new ActionCard(color, "Draw Two"));
         }
-        String[] Actions = {"Wild", "Wild Draw Four"};
-        for (String action : Actions) {
+        String[] wilds = {"Wild", "Wild Draw Four"};
+        for (String wild : wilds) {
             for (int j = 0; j < 4; j++) {
-                deck.add(new WildCard(action));
+                deck.add(new WildCard(wild));
             }
         }
     }

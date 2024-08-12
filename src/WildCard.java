@@ -27,6 +27,8 @@ public class WildCard implements Card {
 
     @Override
     public String toString() {
-        return this.action;
+
+        return "WildCard{action='" + action + '\'' + '}';
     }
+
 }

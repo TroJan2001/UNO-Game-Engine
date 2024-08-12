@@ -1,5 +1,5 @@
 public interface Card {
 
-    public String getValue();
-    public boolean playable(Card card);
+    String getValue();
+    boolean playable(Card card);
 }

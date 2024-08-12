@@ -1,9 +1,9 @@
 public interface Deck {
-    public void shuffle();
+    void shuffle();
 
-    public void initializeDeck();
+    void initializeDeck();
 
-    public Card drawCard();
+    Card drawCard();
 
-    public void addCustomWildCard(WildCard wildCard);
+    void addCustomWildCard(WildCard wildCard);
 }
