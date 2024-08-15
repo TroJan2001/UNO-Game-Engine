@@ -1,4 +1,6 @@
-public abstract class ActionCard implements ColoredCard,Executable {
+package cards;
+
+public abstract class ActionCard implements ColoredCard, Executable {
     private final String color;
     private final String action;
 

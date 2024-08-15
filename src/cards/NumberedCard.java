@@ -1,3 +1,5 @@
+package cards;
+
 public class NumberedCard implements ColoredCard {
     private final String number;
     private final String color;

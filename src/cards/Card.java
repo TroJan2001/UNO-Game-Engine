@@ -1,3 +1,5 @@
+package cards;
+
 public interface Card {
 
     String getValue();

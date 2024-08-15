@@ -1,8 +1,12 @@
+package core;
+
+import cards.Card;
+
 import java.util.*;
 
 public class Player {
     private final String name;
-    private final List<Card> hand;
+    private List<Card> hand;
 
 
     public Player(String name) {
@@ -18,12 +22,21 @@ public class Player {
         return hand;
     }
 
+    public void setHand(List<Card> newHand) {
+        this.hand = new ArrayList<>(newHand); // Set the player's hand to the new set of cards
+    }
+
     public void drawCard(Card card) {
         hand.add(card);
     }
 
     public void playCard(Card card) {
         hand.remove(card);
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 
 }

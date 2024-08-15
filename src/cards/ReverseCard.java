@@ -1,4 +1,7 @@
-class ReverseCard extends ActionCard{
+package cards;
+import core.Context;
+
+public class ReverseCard extends ActionCard {
     public ReverseCard(String color) {
         super(color, "Reverse");
     }

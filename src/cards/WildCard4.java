@@ -1,3 +1,6 @@
+package cards;
+import core.Context;
+import core.*;
 public class WildCard4 extends WildCard {
 
     public WildCard4() {
