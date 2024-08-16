@@ -2,7 +2,8 @@ package core;
 
 import cards.Card;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Player {
     private final String name;
@@ -23,7 +24,7 @@ public class Player {
     }
 
     public void setHand(List<Card> newHand) {
-        this.hand = new ArrayList<>(newHand); // Set the player's hand to the new set of cards
+        this.hand = new ArrayList<>(newHand);
     }
 
     public void drawCard(Card card) {

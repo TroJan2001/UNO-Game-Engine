@@ -1,5 +1,6 @@
 package cards;
 
+import color_utils.Colors;
 import core.Context;
 import core.Deck;
 import core.Game;
@@ -19,7 +20,7 @@ public class DrawTwoCard extends ActionCard {
         Deck deck = context.getDeck();
         nextPlayer.drawCard(deck.drawCard());
         nextPlayer.drawCard(deck.drawCard());
-        System.out.println(nextPlayer.getName() + " draws two cards");
+        System.out.println(Colors.PURPLE + nextPlayer.getName() + " draws two cards");
         game.skipNextTurn();
     }
 }

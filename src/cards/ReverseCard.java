@@ -1,4 +1,5 @@
 package cards;
+
 import core.Context;
 
 public class ReverseCard extends ActionCard {
@@ -10,5 +11,4 @@ public class ReverseCard extends ActionCard {
     public void execute(Context context) {
         context.getGame().reverseDirection();
     }
-
 }

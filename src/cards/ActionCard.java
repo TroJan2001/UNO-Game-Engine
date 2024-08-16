@@ -1,11 +1,12 @@
 package cards;
 
-public abstract class ActionCard implements ColoredCard, Executable {
-    private final String color;
+import color_utils.Colors;
+
+public abstract class ActionCard extends ColoredCard implements Executable {
     private final String action;
 
     public ActionCard(String color, String action) {
-        this.color = color;
+        super(color);
         this.action = action;
     }
 
@@ -40,7 +41,7 @@ public abstract class ActionCard implements ColoredCard, Executable {
 
     @Override
     public String toString() {
-        return "ActionCard{" + "color='" + color + '\'' + ", action='" + action + '\'' + '}';
+        return super.toString() + "ActionCard{" + "color='" + color + '\'' + ", action='" + action + '\'' + '}' + Colors.RESET;
     }
 
 }

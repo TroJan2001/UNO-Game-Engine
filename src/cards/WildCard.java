@@ -1,5 +1,7 @@
 package cards;
 
+import color_utils.ColorGenerator;
+import color_utils.Colors;
 import core.Context;
 import core.DiscardPile;
 import core.Player;
@@ -8,7 +10,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WildCard extends BasicWildCard{
+public class WildCard extends BasicWildCard {
 
     @Override
     public String getValue() {
@@ -38,6 +40,6 @@ public class WildCard extends BasicWildCard{
 
         // Add the card with the chosen color to the discard pile
         discardPile.addCard(new FillerCard(chosenColor, "FillerCard"));
-        System.out.println("Changing color to " + chosenColor);
+        System.out.println(ColorGenerator.getColor(chosenColor) + "Changing color to " + chosenColor + Colors.RESET);
     }
 }

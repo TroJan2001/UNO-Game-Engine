@@ -19,7 +19,6 @@ public class Context {
     }
 
 
-
     public DiscardPile getDiscardPile() {
         return discardPile;
     }

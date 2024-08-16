@@ -1,6 +1,10 @@
 package cards;
+
+import color_utils.Colors;
 import core.Context;
-import core.*;
+import core.Game;
+import core.Player;
+
 public class WildCard4 extends WildCard {
 
     public WildCard4() {
@@ -19,7 +23,7 @@ public class WildCard4 extends WildCard {
         for (int i = 0; i < 4; i++) {
             wildNextPlayer.drawCard(context.getDeck().drawCard());
         }
-        System.out.println(wildNextPlayer.getName() + " draws four cards");
+        System.out.println(Colors.PURPLE + wildNextPlayer.getName() + " draws four cards" + Colors.RESET);
         game.skipNextTurn();
     }
 }

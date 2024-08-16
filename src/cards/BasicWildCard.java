@@ -27,7 +27,6 @@ public abstract class BasicWildCard implements Card, Executable {
 
     @Override
     public String toString() {
-
         return "WildCard{action='" + getValue() + '\'' + '}';
     }
 

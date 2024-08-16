@@ -1,12 +1,13 @@
 package cards;
 
-public class NumberedCard implements ColoredCard {
+import color_utils.Colors;
+
+public class NumberedCard extends ColoredCard {
     private final String number;
-    private final String color;
 
     public NumberedCard(String color, String number) {
+        super(color);
         this.number = number;
-        this.color = color;
     }
 
     @Override
@@ -38,6 +39,6 @@ public class NumberedCard implements ColoredCard {
 
     @Override
     public String toString() {
-        return "NumberedCard{" + "color='" + color + '\'' + ", number='" + number + '\'' + '}';
+        return super.toString() + "NumberedCard{" + "color='" + color + '\'' + ", number='" + number + '\'' + '}' + Colors.RESET;
     }
 }

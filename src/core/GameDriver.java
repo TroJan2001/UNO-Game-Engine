@@ -1,6 +1,6 @@
 package core;
 
-import Factory.GameFactory;
+import factory.GameFactory;
 
 public class GameDriver {
     public static void main(String[] args) {

@@ -1,4 +1,5 @@
 package cards;
+
 import core.Context;
 
 public interface Executable {

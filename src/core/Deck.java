@@ -1,48 +1,60 @@
 package core;
 
 import cards.*;
+import color_utils.Colors;
+import factory.CardFactory;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public abstract class Deck {
-     public ArrayList<Card> deck = new ArrayList<>();
+    public ArrayList<Card> deck = new ArrayList<>();
 
-     void initializeDeck(){
-         String[] Colors = {"Red", "Blue", "Green", "Yellow"};
-         for (String color : Colors) {
-             for (int j = 1; j < 10; j++) {
-                 deck.add(new NumberedCard(color, String.valueOf(j)));
-                 deck.add(new NumberedCard(color, String.valueOf(j)));
-             }
-             deck.add(new NumberedCard(color, String.valueOf(0)));
-             deck.add(new ReverseCard(color));
-             deck.add(new ReverseCard(color));
-             deck.add(new SkipCard(color));
-             deck.add(new SkipCard(color));
-             deck.add(new DrawTwoCard(color));
-             deck.add(new DrawTwoCard(color));
-         }
-         for (int j = 0; j < 4; j++) {
-             deck.add(new WildCard());
-             deck.add(new WildCard4());
-         }
-         shuffle();
-     }
-
-    public Card drawCard(){
-        if (deck.isEmpty()) {
-            refillDeck();
-        }
-        return deck.remove(0);
+    protected Card drawFirstCard(){
+        return drawCard();
     }
 
-    protected void shuffle(){
+    void initializeDeck() {
+        String[] Colors = {"Red", "Blue", "Green", "Yellow"};
+        for (String color : Colors) {
+            for (int j = 1; j < 10; j++) {
+                deck.add(CardFactory.getNumberedCardInstance(color,String.valueOf(j)));
+                deck.add(CardFactory.getNumberedCardInstance(color,String.valueOf(j)));
+            }
+            deck.add(CardFactory.getNumberedCardInstance(color,String.valueOf(0)));
+            deck.add(CardFactory.getActionCardInstance("Reverse",color));
+            deck.add(CardFactory.getActionCardInstance("Reverse",color));
+            deck.add(CardFactory.getActionCardInstance("Skip",color));
+            deck.add(CardFactory.getActionCardInstance("Skip",color));
+            deck.add(CardFactory.getActionCardInstance("Draw Two", color));
+            deck.add(CardFactory.getActionCardInstance("Draw Two", color));
+        }
+        for (int j = 0; j < 4; j++) {
+            deck.add(CardFactory.getWildCardInstance("Wild"));
+            deck.add(CardFactory.getWildCardInstance("Wild 4"));
+        }
+        shuffle();
+    }
+
+    public Card drawCard() {
+        return removeCard(0);
+    }
+
+    public Card removeCard(int index) {
+        if (deck.isEmpty())
+            refillDeck();
+        if (index >= 0 && index < deck.size()) {
+            return deck.remove(index);
+        }
+        throw new IndexOutOfBoundsException("Index: " + index + ", Size: " + deck.size());
+    }
+
+    protected void shuffle() {
         Collections.shuffle(deck);
     }
 
-    protected void refillDeck(){
+    protected void refillDeck() {
         System.out.println("Refilling Core.Deck");
         DiscardPile discardPile = DiscardPile.getInstance();
 
@@ -61,6 +73,14 @@ public abstract class Deck {
         discardPile.addCard(topCard);
 
         shuffle();
+    }
+
+    protected void addCustomWildCard(BasicWildCard basicWildCard) {
+        if (deck.size() > 111) {
+            System.out.println(Colors.PURPLE + "Maximum Deck Size Reached (112)" + Colors.RESET);
+            return;
+        }
+        deck.add(basicWildCard);
     }
 
 }

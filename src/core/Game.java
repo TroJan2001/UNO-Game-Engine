@@ -2,6 +2,7 @@ package core;
 
 import cards.Card;
 import cards.Executable;
+import color_utils.Colors;
 
 import java.util.*;
 
@@ -15,16 +16,19 @@ public abstract class Game {
     protected boolean skipNextTurn;
     protected Map<Player, Context> playerContexts;
 
-    protected abstract void firstDraw();
-
     protected abstract boolean checkWinCondition(Player player);
 
     protected abstract void win(Player player);
 
+    public void skipNextTurn() {
+        skipNextTurn = true;
+        System.out.println(Colors.PURPLE + "Skipping " + getNextPlayer().getName() + "'s Turn" + Colors.RESET);
+    }
 
-    public abstract void skipNextTurn();
-
-    public abstract void reverseDirection();
+    public void reverseDirection() {
+        isReversed = !isReversed; // Toggle the direction
+        System.out.println(Colors.PURPLE + "Direction reversed" + Colors.RESET);
+    }
 
     protected void initializeGame() {
         players = new ArrayList<>();
@@ -50,7 +54,7 @@ public abstract class Game {
                     System.out.println("Player's name is already in use, please choose a different name.");
                 }
             } else {
-                System.out.println("Invalid input");
+                System.out.println("Invalid input!");
             }
         }
     }
@@ -69,6 +73,11 @@ public abstract class Game {
         return false;
     }
 
+    protected void firstCard() {
+        discardPile.addCard(deck.drawFirstCard());
+        System.out.println(Colors.PURPLE + "Top card is " + discardPile.getTopCard() + Colors.RESET);
+    }
+
     protected boolean isNameInUse(String playerName) {
         for (Player player : players) {
             if (player.getName().equalsIgnoreCase(playerName)) {
@@ -78,13 +87,12 @@ public abstract class Game {
         return false;
     }
 
-    protected void playTurn(Player player) {
+    protected boolean playTurn(Player player) {
         if (skipNextTurn) {
             skipNextTurn = false;
             currentPlayerIndex = getNextPlayerIndex();
-            return;
+            return false;
         }
-
         showHand(player);
         boolean cardPlayed = attemptPlayCard(player);
 
@@ -93,11 +101,17 @@ public abstract class Game {
             drawCard(player);
         }
         currentPlayerIndex = getNextPlayerIndex();
+
+        if (checkWinCondition(player)) {
+            win(player);
+            return true;
+        }
+        return false;
     }
 
     protected void dealCards(int numOfCards) {
         if (numOfCards < 2 || numOfCards > 9) {
-            System.out.println("number of cards not in range ... Defaulting to 7");
+            System.out.println(Colors.PURPLE + "number of cards not in range ... Defaulting to 7" + Colors.RESET);
             numOfCards = 7;
         }
         for (Player player : players) {
@@ -119,10 +133,10 @@ public abstract class Game {
             if (card.playable(topCard)) {
                 player.playCard(card);
                 discardPile.addCard(card);
-                System.out.println(player.getName() + " plays " + card);
+                System.out.println(Colors.PURPLE + player.getName() + " plays " + Colors.RESET + card);
                 cardPlayed = true;
 
-                // Handle special cards
+                // Handle Executable cards
                 if (card instanceof Executable executable) {
                     Context context = playerContexts.get(player);
                     executable.execute(context);
@@ -135,7 +149,7 @@ public abstract class Game {
     }
 
     protected void showHand(Player player) {
-        System.out.println(player.getName() + "'s turn. " + player.getName() + "'s cards: ");
+        System.out.println(Colors.PURPLE + player.getName() + "'s turn. " + player.getName() + "'s cards:" + Colors.RESET);
         for (Card card : player.getHand()) {
             System.out.println(card);
         }
@@ -154,26 +168,23 @@ public abstract class Game {
     protected void drawCard(Player player) {
         Card drawnCard = deck.drawCard();
         player.drawCard(drawnCard);
-        System.out.println(player.getName() + " draws a card");
+        System.out.println(Colors.PURPLE + player.getName() + " draws a card" + Colors.RESET);
     }
 
     // Main game loop
     public void play() {
         initializeGame();
-        firstDraw();
+        firstCard();
         while (true) {
             if (players.isEmpty()) {
-                System.out.println("No players available.");
+                System.out.println(Colors.PURPLE + "No players available." + Colors.RESET);
                 return;
             }
 
             Player player = players.get(currentPlayerIndex);
-            playTurn(player);
 
-            if (checkWinCondition(player)) {
-                win(player);
+            if(playTurn(player))
                 return;
-            }
         }
     }
 

@@ -1,4 +1,4 @@
-package Factory;
+package factory;
 
 import core.ClassicUNO;
 import core.CustomUNO;
