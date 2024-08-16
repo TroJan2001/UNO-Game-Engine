@@ -1,7 +1,6 @@
 package core;
 
 import cards.Card;
-import cards.SwapHandCard;
 import factory.CardFactory;
 
 import java.util.Random;

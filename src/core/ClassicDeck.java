@@ -1,7 +1,5 @@
 package core;
 
-import cards.Card;
-
 public class ClassicDeck extends Deck {
 
     private static ClassicDeck instance;
