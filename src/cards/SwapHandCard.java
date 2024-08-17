@@ -4,6 +4,7 @@ import core.GameContext;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class SwapHandCard extends BasicWildCard {
 
@@ -30,5 +31,10 @@ public class SwapHandCard extends BasicWildCard {
             return false;
         }
         return this.getValue().equals(other.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 }

@@ -2,6 +2,8 @@ package cards;
 
 import color_utils.Colors;
 
+import java.util.Objects;
+
 public abstract class ActionCard extends ColoredCard implements Executable {
     private final String action;
 
@@ -37,6 +39,11 @@ public abstract class ActionCard extends ColoredCard implements Executable {
             return false;
 
         return this.color.equals(other.color) && this.action.equals(other.action);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, action);
     }
 
     @Override

@@ -2,6 +2,8 @@ package cards;
 
 import core.GameContext;
 
+import java.util.Objects;
+
 public abstract class BasicWildCard implements Card, Executable {
 
     @Override
@@ -23,6 +25,11 @@ public abstract class BasicWildCard implements Card, Executable {
             return false;
 
         return this.getValue().equals(other.getValue());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getValue());
     }
 
     @Override

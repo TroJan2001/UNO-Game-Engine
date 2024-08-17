@@ -2,6 +2,8 @@ package cards;
 
 import color_utils.Colors;
 
+import java.util.Objects;
+
 public class NumberedCard extends ColoredCard {
     private final String number;
 
@@ -20,6 +22,13 @@ public class NumberedCard extends ColoredCard {
         return this.number;
     }
 
+    public boolean playable(Card card) {
+        if (card instanceof ColoredCard) {
+            return this.color.equals(((ColoredCard) card).getColor()) || this.number.equals(card.getValue());
+        }
+        return true;
+    }
+
     public boolean equals(Object obj) {
         if (this == obj)
             return true;
@@ -30,11 +39,9 @@ public class NumberedCard extends ColoredCard {
         return this.color.equals(other.color) && this.number.equals(other.number);
     }
 
-    public boolean playable(Card card) {
-        if (card instanceof ColoredCard) {
-            return this.color.equals(((ColoredCard) card).getColor()) || this.number.equals(card.getValue());
-        }
-        return true;
+    @Override
+    public int hashCode() {
+        return Objects.hash(color, number);
     }
 
     @Override
