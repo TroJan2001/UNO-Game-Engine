@@ -9,7 +9,7 @@ import java.util.Collections;
 import java.util.List;
 
 public abstract class Deck {
-    public ArrayList<Card> deck = new ArrayList<>();
+    public List<Card> deck = new ArrayList<>();
 
     protected Card drawFirstCard(){
         return drawCard();
