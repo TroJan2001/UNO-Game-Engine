@@ -69,7 +69,13 @@ public abstract class Game {
 
         Player player = new Player(playerName);
         players.add(player);
-        playerContexts.put(player, new GameContext(player, discardPile, deck, scanner, this));
+        GameContext gameContext = new GameContext.Builder()
+                .setPlayer(player)
+                .setDiscardPile(discardPile)
+                .setDeck(deck)
+                .setGame(this)
+                .build();
+        playerContexts.put(player, gameContext);
         return false;
     }
 
