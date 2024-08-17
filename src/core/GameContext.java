@@ -38,4 +38,9 @@ public class GameContext {
     public Player getPlayer() {
         return player;
     }
+
+    @Override
+    public String toString(){
+        return "Game Context";
+    }
 }

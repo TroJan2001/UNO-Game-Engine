@@ -13,11 +13,6 @@ public abstract class ActionCard extends ColoredCard implements Executable {
     }
 
     @Override
-    public String getColor() {
-        return this.color;
-    }
-
-    @Override
     public String getValue() {
         return this.action;
     }

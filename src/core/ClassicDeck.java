@@ -15,4 +15,9 @@ public class ClassicDeck extends Deck {
         return instance;
     }
 
+    @Override
+    public String toString(){
+        return "This is a Classic Deck";
+    }
+
 }

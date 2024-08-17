@@ -9,7 +9,9 @@ public abstract class ColoredCard implements Card {
         this.color = color;
     }
 
-    abstract String getColor();
+    String getColor(){
+     return color;
+    }
 
     public String toString() {
         return ColorGenerator.getColor(this.color);

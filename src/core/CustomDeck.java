@@ -30,4 +30,8 @@ public class CustomDeck extends Deck {
         return removeCard(randomIndex);
     }
 
+    @Override
+    public String toString(){
+        return "This is a Custom Deck";
+    }
 }

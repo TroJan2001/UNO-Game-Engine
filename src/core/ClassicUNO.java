@@ -27,6 +27,11 @@ public class ClassicUNO extends Game {
         System.out.println(Colors.PURPLE + player.getName() + " wins!" + Colors.RESET);
     }
 
+    @Override
+    public String toString(){
+        return "This is a Classic Game Engine";
+    }
+
 
 }
 

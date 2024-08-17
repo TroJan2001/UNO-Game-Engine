@@ -39,7 +39,7 @@ public class WildCard extends BasicWildCard {
         String chosenColor = Collections.max(colorCount.entrySet(), Map.Entry.comparingByValue()).getKey();
 
         // Add the card with the chosen color to the discard pile
-        discardPile.addCard(new FillerCard(chosenColor, "FillerCard"));
+        discardPile.addCard(new FillerCard(chosenColor));
         System.out.println(ColorGenerator.getColor(chosenColor) + "Changing color to " + chosenColor + Colors.RESET);
     }
 }

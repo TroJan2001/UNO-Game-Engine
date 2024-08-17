@@ -2,13 +2,19 @@ package cards;
 
 import core.GameContext;
 
-public class FillerCard extends ActionCard {
-    public FillerCard(String color, String action) {
-        super(color, action);
+public class FillerCard extends ColoredCard {
+    public FillerCard(String color) {
+        super(color);
     }
 
     @Override
-    public void execute(GameContext gameContext) {
-
+    public String getValue() {
+        return "Filler Card";
     }
+
+    @Override
+    public boolean playable(Card card) {
+        return false;
+    }
+
 }

@@ -13,11 +13,6 @@ public class NumberedCard extends ColoredCard {
     }
 
     @Override
-    public String getColor() {
-        return this.color;
-    }
-
-    @Override
     public String getValue() {
         return this.number;
     }

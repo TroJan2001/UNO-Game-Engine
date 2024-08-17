@@ -73,5 +73,10 @@ public class CustomUNO extends Game {
         return super.playTurn(player);
     }
 
+    @Override
+    public String toString(){
+        return "This is a CustomUNO Game Engine";
+    }
+
 }
 
