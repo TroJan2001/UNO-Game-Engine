@@ -1,6 +1,6 @@
 package cards;
 
-import core.Context;
+import core.GameContext;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,10 +14,10 @@ public class SwapHandCard extends BasicWildCard {
     }
 
     @Override
-    public void execute(Context context) {
-        List<Card> tempHand = new ArrayList<>(context.getPlayer().getHand());
-        context.getPlayer().setHand(context.getGame().getNextPlayer().getHand());
-        context.getGame().getNextPlayer().setHand(tempHand);
+    public void execute(GameContext gameContext) {
+        List<Card> tempHand = new ArrayList<>(gameContext.getPlayer().getHand());
+        gameContext.getPlayer().setHand(gameContext.getGame().getNextPlayer().getHand());
+        gameContext.getGame().getNextPlayer().setHand(tempHand);
     }
 
     @Override

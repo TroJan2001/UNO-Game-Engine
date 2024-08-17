@@ -1,6 +1,6 @@
 package cards;
 
-import core.Context;
+import core.GameContext;
 
 public abstract class BasicWildCard implements Card, Executable {
 
@@ -8,7 +8,7 @@ public abstract class BasicWildCard implements Card, Executable {
     abstract public String getValue();
 
     @Override
-    abstract public void execute(Context context);
+    abstract public void execute(GameContext gameContext);
 
     @Override
     public boolean playable(Card card) {

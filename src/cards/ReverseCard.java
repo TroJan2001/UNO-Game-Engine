@@ -1,6 +1,6 @@
 package cards;
 
-import core.Context;
+import core.GameContext;
 
 public class ReverseCard extends ActionCard {
     public ReverseCard(String color) {
@@ -8,7 +8,7 @@ public class ReverseCard extends ActionCard {
     }
 
     @Override
-    public void execute(Context context) {
-        context.getGame().reverseDirection();
+    public void execute(GameContext gameContext) {
+        gameContext.getGame().reverseDirection();
     }
 }

@@ -2,7 +2,7 @@ package cards;
 
 import color_utils.ColorGenerator;
 import color_utils.Colors;
-import core.Context;
+import core.GameContext;
 import core.DiscardPile;
 import core.Player;
 
@@ -18,9 +18,9 @@ public class WildCard extends BasicWildCard {
     }
 
     @Override
-    public void execute(Context context) {
-        DiscardPile discardPile = context.getDiscardPile();
-        Player currentPlayer = context.getPlayer();
+    public void execute(GameContext gameContext) {
+        DiscardPile discardPile = gameContext.getDiscardPile();
+        Player currentPlayer = gameContext.getPlayer();
 
         // Count occurrences of each color in the player's hand
         Map<String, Integer> colorCount = new HashMap<>();

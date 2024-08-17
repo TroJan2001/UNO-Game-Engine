@@ -1,6 +1,6 @@
 package cards;
 
-import core.Context;
+import core.GameContext;
 
 public class FillerCard extends ActionCard {
     public FillerCard(String color, String action) {
@@ -8,7 +8,7 @@ public class FillerCard extends ActionCard {
     }
 
     @Override
-    public void execute(Context context) {
+    public void execute(GameContext gameContext) {
 
     }
 }

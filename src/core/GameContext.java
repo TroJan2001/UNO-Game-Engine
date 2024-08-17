@@ -2,7 +2,7 @@ package core;
 
 import java.util.Scanner;
 
-public class Context {
+public class GameContext {
     final private DiscardPile discardPile;
     final private Deck deck;
     final private Scanner scanner;
@@ -10,7 +10,7 @@ public class Context {
     final private Player player;
 
     // Constructor and getters/setters
-    public Context(Player player, DiscardPile discardPile, Deck deck, Scanner scanner, Game game) {
+    public GameContext(Player player, DiscardPile discardPile, Deck deck, Scanner scanner, Game game) {
         this.discardPile = discardPile;
         this.deck = deck;
         this.scanner = scanner;

@@ -51,7 +51,7 @@ public class CustomUNO extends Game {
     @Override
     protected void win(Player player) {
         if (playerContexts.size() > 2) {
-            List<Map.Entry<Player, Context>> sortedPlayers = playerContexts.entrySet().stream()
+            List<Map.Entry<Player, GameContext>> sortedPlayers = playerContexts.entrySet().stream()
                     .sorted(Comparator.comparingInt(entry -> entry.getValue().getPlayer().getHand().size()))
                     .toList();
             Player secondWinner = sortedPlayers.get(1).getKey();

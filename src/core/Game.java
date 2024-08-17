@@ -14,7 +14,7 @@ public abstract class Game {
     protected int currentPlayerIndex;
     protected boolean isReversed;
     protected boolean skipNextTurn;
-    protected Map<Player, Context> playerContexts;
+    protected Map<Player, GameContext> playerContexts;
 
     protected abstract boolean checkWinCondition(Player player);
 
@@ -69,7 +69,7 @@ public abstract class Game {
 
         Player player = new Player(playerName);
         players.add(player);
-        playerContexts.put(player, new Context(player, discardPile, deck, scanner, this));
+        playerContexts.put(player, new GameContext(player, discardPile, deck, scanner, this));
         return false;
     }
 
@@ -138,8 +138,8 @@ public abstract class Game {
 
                 // Handle Executable cards
                 if (card instanceof Executable executable) {
-                    Context context = playerContexts.get(player);
-                    executable.execute(context);
+                    GameContext gameContext = playerContexts.get(player);
+                    executable.execute(gameContext);
                 }
                 break;
             }

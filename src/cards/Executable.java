@@ -1,7 +1,7 @@
 package cards;
 
-import core.Context;
+import core.GameContext;
 
 public interface Executable {
-    void execute(Context context);
+    void execute(GameContext gameContext);
 }

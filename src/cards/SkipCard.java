@@ -1,6 +1,6 @@
 package cards;
 
-import core.Context;
+import core.GameContext;
 
 public class SkipCard extends ActionCard {
     public SkipCard(String color) {
@@ -8,7 +8,7 @@ public class SkipCard extends ActionCard {
     }
 
     @Override
-    public void execute(Context context) {
-        context.getGame().skipNextTurn();
+    public void execute(GameContext gameContext) {
+        gameContext.getGame().skipNextTurn();
     }
 }
