@@ -51,11 +51,14 @@ public class CustomUNO extends Game {
     @Override
     protected void win(Player player) {
         if (playerContexts.size() > 2) {
+            String playerName = player.getName();
+            playerContexts.remove(player);
             List<Map.Entry<Player, GameContext>> sortedPlayers = playerContexts.entrySet().stream()
                     .sorted(Comparator.comparingInt(entry -> entry.getValue().getPlayer().getHand().size()))
                     .toList();
             Player secondWinner = sortedPlayers.get(1).getKey();
-            System.out.println(Colors.PURPLE + player.getName() + " wins and " + secondWinner.getName() + " is the second winner" + Colors.RESET);
+
+            System.out.println(Colors.PURPLE + playerName + " wins and " + secondWinner.getName() + " is the second winner" + Colors.RESET);
         }
         else
             System.out.println(Colors.PURPLE + player.getName() + " wins!" + Colors.RESET);
