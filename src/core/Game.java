@@ -150,9 +150,11 @@ public abstract class Game {
 
     protected void showHand(Player player) {
         System.out.println(Colors.PURPLE + player.getName() + "'s turn. " + player.getName() + "'s cards:" + Colors.RESET);
+        System.out.println("----------------------------------------------------------------------------------------------");
         for (Card card : player.getHand()) {
             System.out.println(card);
         }
+        System.out.println("----------------------------------------------------------------------------------------------");
     }
 
     protected int getNextPlayerIndex() {
