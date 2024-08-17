@@ -18,7 +18,9 @@ public abstract class Game {
 
     protected abstract boolean checkWinCondition(Player player);
 
-    protected abstract void win(Player player);
+    protected void win(Player player){
+        System.out.println(Colors.PURPLE + player.getName() + " wins!" + Colors.RESET);
+    }
 
     public void skipNextTurn() {
         skipNextTurn = true;
@@ -179,7 +181,6 @@ public abstract class Game {
         System.out.println(Colors.PURPLE + player.getName() + " draws a card" + Colors.RESET);
     }
 
-    // Main game loop
     public void play() {
         initializeGame();
         firstCard();

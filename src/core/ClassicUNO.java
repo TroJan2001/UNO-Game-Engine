@@ -23,11 +23,6 @@ public class ClassicUNO extends Game {
     }
 
     @Override
-    protected void win(Player player) {
-        System.out.println(Colors.PURPLE + player.getName() + " wins!" + Colors.RESET);
-    }
-
-    @Override
     public String toString(){
         return "This is a Classic Game Engine";
     }

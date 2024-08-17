@@ -61,7 +61,7 @@ public class CustomUNO extends Game {
             System.out.println(Colors.PURPLE + playerName + " wins and " + secondWinner.getName() + " is the second winner" + Colors.RESET);
         }
         else
-            System.out.println(Colors.PURPLE + player.getName() + " wins!" + Colors.RESET);
+            super.win(player);
     }
 
     @Override
