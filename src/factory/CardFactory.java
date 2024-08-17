@@ -28,5 +28,4 @@ public class CardFactory {
     public static NumberedCard getNumberedCardInstance(String color, String number) {
         return new NumberedCard(color, number);
     }
-
 }
